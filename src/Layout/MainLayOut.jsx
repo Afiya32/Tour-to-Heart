@@ -1,6 +1,9 @@
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import logo from  '../Logo/logo/logo2-removebg-preview.png'
-
+import person from '../Logo/logo/person-removebg-preview.png'
+import { RiLogoutCircleRLine } from "react-icons/ri";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { LuLogIn } from "react-icons/lu";
 const MainLayOut = () => {
     return (
         <div>
@@ -22,11 +25,43 @@ const MainLayOut = () => {
             
        </div>
       </div>
-      <div className="flex-none hidden lg:block">
-        <ul className="menu menu-horizontal">
+      <div className="flex-none hidden justify-center items-center lg:block">
+        <ul className="menu text-xl menu-horizontal p-4">
           {/* Navbar menu content here */}
-          <li><a>Navbar Item 1</a></li>
-          <li><a>Navbar Item 2</a></li>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/'>Home</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/community'>Community</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/blog'>Blogs</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/about'>About Us</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/contact'>Contact Us</NavLink>
+         <details className="dropdown p-2">
+  <summary className="m-1 btn ">
+  <div className="avatar">
+  <div className="w-12 rounded-full">
+    <img src={person} />
+  </div>
+</div>
+  </summary>
+  <ul className="p-4 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+    <NavLink className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 flex justify-center items-center btn btn-outline btn-success text-green-400 underline  font-bold" : "font-bold flex justify-center items-center btn btn-outline btn-success p-2"
+  } to='/signup'> <LuLogIn className='text-2xl' />Sign Up</NavLink>
+    <NavLink className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 flex justify-center items-center btn btn-outline btn-success text-green-400 underline  font-bold" : "font-bold flex justify-center items-center btn btn-outline btn-success p-2"
+  } to='/dashboard' > <MdOutlineSpaceDashboard className='text-2xl'/>Dash Board</NavLink>
+    <li><button className='btn btn-outline btn-success p-2'> <RiLogoutCircleRLine className='text-2xl' />Log Out</button> </li>
+  </ul>
+</details>
+        
         </ul>
       </div>
     </div>
@@ -35,10 +70,41 @@ const MainLayOut = () => {
   </div> 
   <div className="drawer-side">
     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label> 
-    <ul className="menu p-4 w-80 min-h-full bg-base-200">
+    <ul className="menu justify-evenly items-center p-4 w-80 min-h-full bg-base-200">
       {/* Sidebar content here */}
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
+      <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/'>Home</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/community'>Community</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/blog'>Blogs</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/about'>About Us</NavLink>
+          <NavLink   className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 text-green-400 underline  font-bold" : "font-bold p-2"
+  } to='/contact'>Contact Us</NavLink>
+     <details className="dropdown p-2">
+  <summary className="m-1 btn ">
+  <div className="avatar">
+  <div className="w-12 rounded-full">
+    <img src={person} />
+  </div>
+</div>
+  </summary>
+  <ul className="p-4 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+    <NavLink className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 flex justify-center items-center btn btn-outline btn-success text-green-400 underline  font-bold" : "font-bold p-2 flex justify-center items-center btn btn-outline btn-success"
+  } to='/signup'> <LuLogIn className='text-2xl' />Sign Up</NavLink>
+    <NavLink className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "p-2 flex justify-center items-center btn btn-outline btn-success text-green-400 underline  font-bold" : "font-bold flex justify-center items-center btn btn-outline btn-success p-2"
+  } to='/dashboard' > <MdOutlineSpaceDashboard className='text-2xl'/>Dash Board</NavLink>
+    <li><button className='btn btn-outline btn-success p-2'> <RiLogoutCircleRLine className='text-2xl' />Log Out</button> </li>
+  </ul>
+</details>
     </ul>
   </div>
 </div>

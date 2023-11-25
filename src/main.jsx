@@ -10,7 +10,7 @@ const client = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
  <QueryClientProvider client={client}>
- <div className='min-w-min max-w-5xl mx-auto'>
+ <div className='min-w-min max-w-7xl mx-auto'>
  <RouterProvider router={Routes}></RouterProvider>
  </div>
  </QueryClientProvider>
