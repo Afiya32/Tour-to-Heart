@@ -9,7 +9,8 @@ import img6 from '../Logo/BannerImage/img6.jpg'
 import img7 from '../Logo/BannerImage/img7.jpg'
 const Banner = () => {
     return (
-        <Carousel autoPlay='true' className="text-center grid justify-center items-center">
+       <div className="min-w-min max-w-7xl mx-auto">
+         <Carousel autoPlay='true' className="text-center  overflow-auto grid justify-center items-center">
         <div>
             <img src={img1} />
           
@@ -39,6 +40,7 @@ const Banner = () => {
            
         </div>
     </Carousel>
+       </div>
     );
 };
 
