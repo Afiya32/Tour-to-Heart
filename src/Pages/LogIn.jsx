@@ -7,6 +7,13 @@ import animation from '../animation/login.json'
 import Marquee from "react-fast-marquee";
 
 const LogIn = () => {
+  const handleLogIn = (e)=>{
+    e.preventDefault();
+             const form = e.target;
+             const email = form.email.value;
+             const password = form.password.value;
+             console.log(email, password);
+  }
     return (
         <div className="hero min-h-screen bg-base-200">
   <div className="hero-content  flex-col gap-16 lg:flex-row-reverse">
@@ -29,10 +36,10 @@ const LogIn = () => {
    Log In
   </h3>
 </div>
-<form >
+<form  onSubmit={handleLogIn}>
 <div className="flex flex-col gap-4 p-6">
   <div className="relative h-11 w-full min-w-[200px]">
-    <input
+    <input type="email" name="email"
       className="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 border-t-transparent text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
       placeholder=" "
     />
@@ -41,7 +48,7 @@ const LogIn = () => {
     </label>
   </div>
   <div className="relative h-11 w-full min-w-[200px]">
-    <input
+    <input type="password" name="password"
       className="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 border-t-transparent text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
       placeholder=" "
     />
@@ -54,7 +61,7 @@ const LogIn = () => {
 <div className="p-6 pt-0">
   <button
     className="block w-full flex justify-center items-center select-none rounded-lg bg-gradient-to-tr from-pink-600 to-pink-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-    type="button"
+    type="submit"
     data-ripple-light="true"
   >
    <LuLogIn className='text-2xl' />Log In
