@@ -1,9 +1,17 @@
+import { Helmet } from "react-helmet-async";
 
 
 const ContactUs = () => {
     return (
         <div>
-            this is a contact us
+            <Helmet>
+                <title>
+                    TH || ContactUs 
+                </title>
+            </Helmet>
+           <div> 
+            this is contact us
+           </div>
         </div>
     );
 };

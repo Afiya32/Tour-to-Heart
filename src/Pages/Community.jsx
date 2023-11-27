@@ -1,9 +1,17 @@
+import { Helmet } from "react-helmet-async";
 
 
 const Community = () => {
     return (
         <div>
-           this is a community 
+            <Helmet>
+                <title>
+                    TH || Community
+                </title>
+            </Helmet>
+           <div>
+            this is community
+           </div>
         </div>
     );
 };

@@ -10,7 +10,7 @@ import img7 from '../Logo/BannerImage/img7.jpg'
 const Banner = () => {
     return (
        <div className="min-w-min max-w-7xl mx-auto">
-         <Carousel autoPlay='true' className="text-center  overflow-auto grid justify-center items-center">
+         <Carousel autoPlay='true' className="text-center  overflow-hidden grid justify-center items-center">
         <div>
             <img src={img1} />
           

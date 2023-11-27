@@ -1,21 +1,63 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuLogIn } from "react-icons/lu";
 import { FcGoogle } from "react-icons/fc";
 import Logo from "../Logotheme/Logo";
 import Lottie from "lottie-react";
 import animation from '../animation/login.json'
 import Marquee from "react-fast-marquee";
+import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const LogIn = () => {
-  const handleLogIn = (e)=>{
-    e.preventDefault();
+  const { googleLogIn,login } = useContext(AuthContext);
+    const navigate = useNavigate()
+          const handleSocial = (media) =>{
+            if (typeof media === 'function') {
+              media()
+              .then(res=>{console.log(res.user)
+                toast.success('user login successfully')
+                    navigate('/')
+                  }
+                )
+              .catch(err=>{
+                toast.error(err.message)
+              })
+              
+            } 
+            console.log("hi google")
+          }
+          const handlelogin = (e)=>{
+            e.preventDefault();
              const form = e.target;
              const email = form.email.value;
              const password = form.password.value;
-             console.log(email, password);
-  }
+             if(password.length < 6) {
+              toast.error('password must be at least 6 characters');
+              return;
+            }
+        
+        
+            login(email, password)
+          .then(res=>{console.log(res.user)
+            toast.success('user login successfully')
+                navigate('/')
+              }
+            )
+          .catch(err=>{
+            toast.error(err.message)
+          })
+        console.log("form submit")
+          }
+
     return (
         <div className="hero min-h-screen bg-base-200">
+          <Helmet>
+                <title>
+                    TH || Log in
+                </title>
+            </Helmet>
   <div className="hero-content  flex-col gap-16 lg:flex-row-reverse">
   <div className=" flex-col justify-center items-center text-center w-2/5">
        <Logo/>
@@ -36,7 +78,7 @@ const LogIn = () => {
    Log In
   </h3>
 </div>
-<form  onSubmit={handleLogIn}>
+<form  onSubmit={handlelogin}>
 <div className="flex flex-col gap-4 p-6">
   <div className="relative h-11 w-full min-w-[200px]">
     <input type="email" name="email"
@@ -70,7 +112,8 @@ const LogIn = () => {
 </div>
 </form>
 <div>
-    <button className="btn btn-outline btn-block btn-info">
+    <button onClick={()=>{handleSocial(googleLogIn)}}  
+     className="btn btn-outline btn-block btn-info">
    LOG IN WITH <FcGoogle className="text-2xl" /> 
     </button>
 </div>

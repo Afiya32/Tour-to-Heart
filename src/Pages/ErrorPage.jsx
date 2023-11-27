@@ -1,9 +1,14 @@
+import { Helmet } from "react-helmet-async";
 
 
 const ErrorPage = () => {
     return (
         <div>
-            <p className="text-red-400">this is error page</p>
+           <Helmet>
+                <title>
+                    TH || Error page
+                </title>
+            </Helmet>
         </div>
     );
 };

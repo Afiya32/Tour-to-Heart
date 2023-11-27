@@ -1,24 +1,57 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuLogIn } from "react-icons/lu";
-import { FcGoogle } from "react-icons/fc";
+
 import Logo from "../Logotheme/Logo";
 import Lottie from "lottie-react";
 import animation from '../animation/SignUp.json'
 import Marquee from "react-fast-marquee";
+import { Helmet } from "react-helmet-async";
+
+import { imageUpload } from "../utilis/utils";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 
 const SignUp = () => {
-  const handleSignUp =(e)=>{
+  const { createUser,handleUpdateProfile } = useContext(AuthContext)
+  const navigate =useNavigate()
+  const handleSignUp = async (e)=>{
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    const image= form.image.value;
+    const image= form.image.files[0];
+    
     const name = form.name.value;
-    console.log(email, password, name, image);
+    
+
+    if(password.length < 6) {
+      toast.error('password must be at least 6 characters');
+      return;
+    }
+    try{
+      const photoURL = await imageUpload(image)
+      console.log(email, password, name, photoURL);
+      await createUser(email, password)
+      await  handleUpdateProfile(name,photoURL)
+      await toast.success('user created successfully')
+           navigate('/')
+      
+    }catch (err){
+      console.log(err)
+    }
+
+ 
+
   }
     return (
     <div className="hero min-h-screen bg-base-200">
+      <Helmet>
+                <title>
+                    TH || Sign Up
+                </title>
+            </Helmet>
     <div className="hero-content flex-col gap-16 lg:flex-row-reverse">
       <div className=" flex-col justify-center items-center text-center w-2/5">
        <Logo/>
@@ -96,11 +129,7 @@ const SignUp = () => {
  
 </div>
 </form>
-<div>
-    <button className="btn btn-outline btn-block btn-info">
-   SIGN UP WITH <FcGoogle className="text-2xl" /> 
-    </button>
-</div>
+
 
 <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
     Already have a account?please
@@ -122,6 +151,7 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
 
 
 
