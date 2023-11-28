@@ -11,6 +11,7 @@ import SignUp from "../Pages/SignUp";
 import DashBoard from "../Layout/DashBoard";
 import AllPackages from "../Pages/AllPackages";
 import PackagesDetails from "../Pages/PackagesDetails";
+import GuideProfile from "../Pages/GuideProfile";
 
 
 const Routes = createBrowserRouter([
@@ -42,8 +43,11 @@ const Routes = createBrowserRouter([
                 path:'tour-details/:id',
                 element:<PackagesDetails/>,
                 loader:({params})=> fetch(`http://localhost:5000/tour/${params.id}`)
-                
-            }
+                 },{
+                    path:'guideprofile/:id',
+                    element:<GuideProfile/>,
+                    loader:({params})=> fetch(`http://localhost:5000/guides/${params.id}`)
+                 }
 
         ]
     },{

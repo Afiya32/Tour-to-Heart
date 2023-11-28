@@ -2,12 +2,33 @@
 import { FaRegHeart } from "react-icons/fa";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const PackageCard = ({item}) => {
+  const {user}=useContext(AuthContext);
     const { _id,image,tourType,title,price} = item ||{}
     const handle= ()=>{
-        console.log("hi heart",_id)
+       const newWish={image ,price,name:user.displayName,tourType};
+       
+       fetch('http://localhost:5000/wishlist',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(newWish)
+    })
+    .then(res=>res.json())
+    .then(data => {
+        console.log(data);
+        if (data.insertedId) {
+            Swal.fire(
+                'Congrats!',
+                'You uploaded a new wishlist successfully',
+                'success'
+            )
+        }
+    });
     }
     console.log(item)
     return (

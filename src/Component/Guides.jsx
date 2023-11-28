@@ -1,9 +1,16 @@
+import { Link } from "react-router-dom";
 import useGuides from "../hook/useGuides";
+import Loadingpage from "./Loadingpage";
 
 
 const Guides = () => {
-    const {data}=useGuides()||{};
+    const {data,isLoading}=useGuides()||{};
     console.log(data);
+    if(isLoading){
+        return (<>
+        <Loadingpage></Loadingpage>
+        </>);
+    }
     return (
        
 <div className="overflow-x-auto">
@@ -42,7 +49,7 @@ const Guides = () => {
           </td>
        
           <th>
-            <button className="btn btn-ghost btn-xs">details</button>
+            <Link to={`/guideprofile/${item._id}`}><button className="btn btn-ghost btn-xs">details</button></Link>
           </th>
         </tr>
        
