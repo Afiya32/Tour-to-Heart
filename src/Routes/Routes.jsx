@@ -9,6 +9,7 @@ import Community from "../Pages/Community";
 import LogIn from "../Pages/LogIn";
 import SignUp from "../Pages/SignUp";
 import DashBoard from "../Layout/DashBoard";
+import AllPackages from "../Pages/AllPackages";
 
 
 const Routes = createBrowserRouter([
@@ -32,6 +33,9 @@ const Routes = createBrowserRouter([
             },{
                 path:'community',
                 element:<Community/>
+            },{
+                path:'allpack',
+                element:<AllPackages/>
             }
         ]
     },{

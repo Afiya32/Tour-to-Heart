@@ -11,6 +11,7 @@ import { imageUpload } from "../utilis/utils";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import { saveUser } from "../utilis/auth";
 
 
 const SignUp = () => {
@@ -33,11 +34,12 @@ const SignUp = () => {
     try{
       const photoURL = await imageUpload(image)
       console.log(email, password, name, photoURL);
-      await createUser(email, password)
+     const result= await createUser(email, password)
       await  handleUpdateProfile(name,photoURL)
-      await toast.success('user created successfully')
+      toast.success('user created successfully')
            navigate('/')
-      
+      const DBresponse = await saveUser(result?.user)
+      console.log(DBresponse)
     }catch (err){
       console.log(err)
     }
