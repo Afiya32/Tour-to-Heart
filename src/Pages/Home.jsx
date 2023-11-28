@@ -3,6 +3,7 @@ import Banner from "../Component/Banner";
 import Heading from "../Component/Heading";
 import Tablist from "../Component/Tablist";
 import ToueTypes from "../Component/ToueTypes";
+import Histroy from "../Component/Histroy";
 
 
 // isLoading ,isFetching, refetch
@@ -28,7 +29,7 @@ const Home = () => {
         </div>
         <div>
             <Heading tittle='tourist histroy' subtittle=' our best moments'/>
-            <p> tours histroy parts</p>
+            <Histroy/>
         </div>
         </div>
     );

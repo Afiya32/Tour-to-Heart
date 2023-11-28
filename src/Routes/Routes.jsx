@@ -10,6 +10,7 @@ import LogIn from "../Pages/LogIn";
 import SignUp from "../Pages/SignUp";
 import DashBoard from "../Layout/DashBoard";
 import AllPackages from "../Pages/AllPackages";
+import PackagesDetails from "../Pages/PackagesDetails";
 
 
 const Routes = createBrowserRouter([
@@ -35,8 +36,15 @@ const Routes = createBrowserRouter([
                 element:<Community/>
             },{
                 path:'allpack',
-                element:<AllPackages/>
+                element:<AllPackages/>,
+              
+            },{
+                path:'tour-details/:id',
+                element:<PackagesDetails/>,
+                loader:({params})=> fetch(`http://localhost:5000/tour/${params.id}`)
+                
             }
+
         ]
     },{
         path:'/login',

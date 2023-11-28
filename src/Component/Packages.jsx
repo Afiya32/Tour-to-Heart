@@ -2,11 +2,17 @@
 import { Link } from "react-router-dom";
 import useDataLoad from "../hook/useDataLoad";
 import PackageCard from "./packagecard";
+import Loadingpage from "./Loadingpage";
 // import PackageCard from "./packagecard";
 
 
 const Packages = () => {
-  const {data } = useDataLoad() || {};
+  const {data,isLoading } = useDataLoad() || {};
+  if(isLoading){
+    return (<>
+    <Loadingpage></Loadingpage>
+    </>);
+}
   console.log(data);
     return (
       <div className="grid grid-flow-row justify-center items-center">
