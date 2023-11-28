@@ -12,6 +12,9 @@ import DashBoard from "../Layout/DashBoard";
 import AllPackages from "../Pages/AllPackages";
 import PackagesDetails from "../Pages/PackagesDetails";
 import GuideProfile from "../Pages/GuideProfile";
+import Myprofile from "../Pages/Myprofile";
+import Mybooking from "../Pages/Mybooking";
+import MywishList from "../Pages/MywishList";
 
 
 const Routes = createBrowserRouter([
@@ -59,7 +62,21 @@ const Routes = createBrowserRouter([
 
     },{
         path:'/dashboard',
-        element:<DashBoard/>
+        element:<DashBoard/>,
+        children:[
+            {
+                index:true,
+                element:<Myprofile/>
+            },{
+                path:'booked',
+                element:<Mybooking/>,
+                loader:()=>fetch('http://localhost:5000/booked')
+            },{
+                path:'wish',
+                element:<MywishList/>,
+                loader:()=>fetch('http://localhost:5000/wishlist')
+            }
+        ]
     }
 ])
 
