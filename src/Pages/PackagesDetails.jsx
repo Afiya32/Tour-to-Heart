@@ -24,7 +24,7 @@ const PackagesDetails = () => {
       e.preventDefault();
       const newBooked ={ price,image,title,tourType,name:user.displayName,tourist_photo:user.photoURL,guide:selectedGuide}
       console.log('Selected Guide:', selectedGuide);
-      fetch('http://localhost:5000/booked',{
+      fetch('https://tour-to-heart-server.vercel.app/booked',{
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newBooked)

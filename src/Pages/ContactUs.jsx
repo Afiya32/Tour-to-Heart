@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-
+import pic from "../Logo/page/contact.png"
 
 const ContactUs = () => {
     return (
@@ -9,9 +9,9 @@ const ContactUs = () => {
                     TH || ContactUs 
                 </title>
             </Helmet>
-           <div> 
-            this is contact us
-           </div>
+            <div className="flex justify-center items-center p-5">
+      <img src={pic} alt="" />
+       </div>
         </div>
     );
 };

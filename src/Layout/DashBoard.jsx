@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLoaderData } from "react-router-dom";
 import Footer from "../Component/Footer";
 import Marquee from "react-fast-marquee";
 
@@ -9,6 +9,10 @@ import logo from "../Logo/logo/logo2-removebg-preview.png"
 
 const DashBoard = () => {
   const { user } = useContext(AuthContext);
+  const serverUser= useLoaderData();
+  const userServer = serverUser.filter(client=>client.name===user.displayName)
+  console.log(userServer[0].role)
+  
     return (
       <div className="max-w-[1200x] mt-2 mx-auto">
       <div className="mx-auto h-24 max-w-[1200px] bg-slate-300 flex justify-center items-center">
@@ -36,14 +40,28 @@ const DashBoard = () => {
                   isActive
                     ? "btn btn-outline btn-success":"text-black"
                 }>DashBoard</NavLink>
-          <NavLink to='/dashboard/wish'  className={({ isActive}) =>
-                  isActive
-                    ? "btn btn-outline btn-success":"text-black"
-                }>My Wish-List</NavLink>
-          <NavLink to='/dashboard/booked'  className={({ isActive}) =>
-                  isActive
-                    ? "btn btn-outline btn-success":"text-black"
-                }>My Booked-package</NavLink>
+         {
+          userServer[0].role==='admin'?<>
+            <NavLink to='/dashboard/addtour'  className={({ isActive}) =>
+isActive
+  ? "btn btn-outline btn-success":"text-black"
+}>Add tour</NavLink>
+<NavLink to='/dashboard/userlist'  className={({ isActive}) =>
+isActive
+  ? "btn btn-outline btn-success":"text-black"
+}>user list</NavLink>
+          </>:<>
+            <NavLink to='/dashboard/wish'  className={({ isActive}) =>
+isActive
+  ? "btn btn-outline btn-success":"text-black"
+}>My Wish-List</NavLink>
+
+<NavLink to='/dashboard/booked'  className={({ isActive}) =>
+isActive
+  ? "btn btn-outline btn-success":"text-black"
+}>My Booked-package</NavLink>
+          </>
+         }
          
         </ul>
         </div>
@@ -59,3 +77,15 @@ const DashBoard = () => {
 };
 
 export default DashBoard;
+
+
+
+
+
+// admin pages
+
+
+
+
+
+// user

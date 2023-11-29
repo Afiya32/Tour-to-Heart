@@ -1,36 +1,29 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 
 
-const Myprofile = () => {
-    const{user}=useContext(AuthContext);
-    const {displayName,photoURL}=user ||{}
+const Myprofile = () => { 
+    const {user}= useContext(AuthContext)||{}
     return (
         <div>
-            <Helmet>
-                <title>DashBoard || Profile</title>
-            </Helmet>
-        <div className=" -mb-56 grid justify-center items-center">
-            <h1 className="text-5xl text-center mt-16 font-bold"> profile</h1>
-        <div className="w-3/4 mt-48 mx-auto text-center">
-        
-        <div className="hero -mt-24 bg-base-200">
-      
-<div className="hero-content flex-col lg:flex-row">
-<img src={photoURL} className="max-w-sm rounded-lg shadow-2xl" />
-<div>
-<h1 className="text-3xl  p-5 font-bold">name : {displayName}</h1>
-<textarea placeholder="Add Story" className="textarea textarea-bordered textarea-lg w-full max-w-xs" ></textarea>
-  <Link to='/'>
-  <button className="btn btn-primary">Go Back</button>
-  </Link>
-</div>
-</div>
-</div>
-        </div>
-        </div>
+         <div className="text-center text-3xl mt-5">
+            <h1>Profile</h1>
+         </div>
+         <div className="grid grid-cols-3 gap-2 mt-5">
+            <div className="col-span-1 m-2">
+                <img src={user.photoURL} alt="" />
+            </div>
+            <div className="flex justify-center items-center">
+            <div>
+            <h1>Name:{user.displayName}</h1>
+                <h1>Email:{user.email}</h1>
+                <h1>Phone:+0880............</h1>
+                <div>
+                <textarea placeholder="add story" className="textarea mt-5 textarea-bordered textarea-lg w-full max-w-xs" ></textarea>
+                </div>
+            </div>
+            </div>
+         </div>
         </div>
     );
 };

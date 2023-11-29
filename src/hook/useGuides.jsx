@@ -6,7 +6,7 @@ const useGuides = () => {
         {
             queryKey:["guide"],
             queryFn: async ()=>{
-                const data = await fetch("http://localhost:5000/guides");
+                const data = await fetch("https://tour-to-heart-server.vercel.app/guides");
                 return await data.json();
             }
         }

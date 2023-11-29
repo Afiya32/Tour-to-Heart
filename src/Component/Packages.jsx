@@ -24,7 +24,7 @@ const Packages = () => {
            }
         </div>
         <div className="mt-5 btn btn-outline mx-auto">
-          <Link to='/allpack'>See All Packages</Link>
+          <Link to='https://tour-heart-dadd6.web.app/allpack'>See All Packages</Link>
         </div>
         </div>
     );

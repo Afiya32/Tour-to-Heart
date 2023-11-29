@@ -12,9 +12,12 @@ import DashBoard from "../Layout/DashBoard";
 import AllPackages from "../Pages/AllPackages";
 import PackagesDetails from "../Pages/PackagesDetails";
 import GuideProfile from "../Pages/GuideProfile";
-import Myprofile from "../Pages/Myprofile";
 import Mybooking from "../Pages/Mybooking";
 import MywishList from "../Pages/MywishList";
+import Myprofile from "../Pages/Myprofile";
+import AddTour from "../Pages/AddTour";
+import UserList from "../Pages/UserList";
+import PrivateRoute from "../Pages/PrivateRoute";
 
 
 const Routes = createBrowserRouter([
@@ -40,15 +43,15 @@ const Routes = createBrowserRouter([
                 element:<Community/>
             },{
                 path:'allpack',
-                element:<AllPackages/>,
+                element:<PrivateRoute><AllPackages/></PrivateRoute>
               
             },{
                 path:'tour-details/:id',
-                element:<PackagesDetails/>,
+                element:<PrivateRoute><PackagesDetails/></PrivateRoute>,
                 loader:({params})=> fetch(`http://localhost:5000/tour/${params.id}`)
                  },{
                     path:'guideprofile/:id',
-                    element:<GuideProfile/>,
+                    element:<PrivateRoute><GuideProfile/></PrivateRoute>,
                     loader:({params})=> fetch(`http://localhost:5000/guides/${params.id}`)
                  }
 
@@ -62,19 +65,27 @@ const Routes = createBrowserRouter([
 
     },{
         path:'/dashboard',
-        element:<DashBoard/>,
+        element:<PrivateRoute><DashBoard/></PrivateRoute>,
+        loader:()=>fetch('https://tour-to-heart-server.vercel.app/users'),
         children:[
             {
                 index:true,
-                element:<Myprofile/>
+                element:<PrivateRoute><Myprofile/></PrivateRoute>
             },{
                 path:'booked',
-                element:<Mybooking/>,
-                loader:()=>fetch('http://localhost:5000/booked')
+                element:<PrivateRoute><Mybooking/></PrivateRoute>,
+                loader:()=>fetch('https://tour-to-heart-server.vercel.app/booked')
             },{
                 path:'wish',
-                element:<MywishList/>,
-                loader:()=>fetch('http://localhost:5000/wishlist')
+                element:<PrivateRoute><MywishList/></PrivateRoute>,
+                loader:()=>fetch('https://tour-to-heart-server.vercel.app/wishlist')
+            },{
+                path:'addtour',
+                element:<PrivateRoute><AddTour/></PrivateRoute>
+            },{
+                path:'userlist',
+                element:<PrivateRoute><UserList/></PrivateRoute>,
+                loader:()=>fetch('https://tour-to-heart-server.vercel.app/users')
             }
         ]
     }

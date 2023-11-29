@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-
+import pic from "../Logo/page/about.jpg"
 
 const AboutUs = () => {
     return (
@@ -9,8 +9,8 @@ const AboutUs = () => {
                     TH || About Us
                 </title>
             </Helmet>
-       <div>
-        this is AboutUs
+       <div className="flex justify-center items-center p-5">
+      <img src={pic} alt="" />
        </div>
         </div>
     );

@@ -9,14 +9,24 @@ import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../hook/useAxiosPublic";
 
 const LogIn = () => {
   const { googleLogIn,login } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
     const navigate = useNavigate()
           const handleSocial = (media) =>{
             if (typeof media === 'function') {
               media()
               .then(res=>{console.log(res.user)
+                const userInfo ={
+                  email: res.user?.email,
+                  name: res.user?.displayName,
+                  image:res.user?.photoURL,
+                  role:'guest'
+                }
+                axiosPublic.post('/users',userInfo)
+                .then(res=>{console.log(res.data)});
                 toast.success('user login successfully')
                     navigate('/')
                   }
@@ -41,7 +51,15 @@ const LogIn = () => {
         
             login(email, password)
           .then(res=>{console.log(res.user)
+            const userInfo ={
+              email: res.user?.email,
+              name: res.user?.displayName,
+              image:res.user?.photoURL,
+              role:'guest'
+            }
+            axiosPublic.post('/users',userInfo)
             toast.success('user login successfully')
+            .then(res=>{console.log(res.data)});
                 navigate('/')
               }
             )

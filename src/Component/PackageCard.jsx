@@ -13,7 +13,7 @@ const PackageCard = ({item}) => {
     const handle= ()=>{
        const newWish={image ,price,name:user.displayName,tourType};
        
-       fetch('http://localhost:5000/wishlist',{
+       fetch('https://tour-to-heart-server.vercel.app/wishlist',{
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(newWish)
