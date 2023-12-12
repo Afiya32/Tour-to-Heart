@@ -48,11 +48,11 @@ const Routes = createBrowserRouter([
             },{
                 path:'tour-details/:id',
                 element:<PrivateRoute><PackagesDetails/></PrivateRoute>,
-                loader:({params})=> fetch(`http://localhost:5000/tour/${params.id}`)
+                loader:({params})=> fetch(`https://tour-to-heart-server.vercel.app/tour/${params._id}`)
                  },{
                     path:'guideprofile/:id',
                     element:<PrivateRoute><GuideProfile/></PrivateRoute>,
-                    loader:({params})=> fetch(`http://localhost:5000/guides/${params.id}`)
+                    loader:({params})=> fetch(`https://tour-to-heart-server.vercel.app/guides/${params.id}`)
                  }
 
         ]

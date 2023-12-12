@@ -16,6 +16,7 @@ import useAxiosPublic from "../hook/useAxiosPublic";
 
 
 const SignUp = () => {
+  
   const { createUser,handleUpdateProfile } = useContext(AuthContext)
   const axiosPublic = useAxiosPublic();
   const navigate =useNavigate()
@@ -45,11 +46,14 @@ const SignUp = () => {
         image:photoURL,
         role:'guest'
       }
+      
+      navigate('/')
       await axiosPublic.post('/users',userInfo)
       toast.success('user login successfully')
       .then(res=>{console.log(res.data)});
+     
       toast.success('user created successfully')
-           navigate('/')
+        
            console.log(result)
       const DBresponse = await saveUser(result?.user)
       console.log(DBresponse)
